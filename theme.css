@@ -316,7 +316,147 @@ body {
   letter-spacing: -0.02em;
 }
 
-/* editor.css: editor, Live Preview and source mode styling */
+/* editor.css: note elements after the blog's post page (MBratkowski/blog): links, tags, code,
+   callouts, tables, embeds, footnotes and tasks, in reading view and Live Preview. Colours come
+   from the palette in tokens.css; this file sets sizes and shapes. */
+
+body {
+  --link-decoration-thickness: 1px;
+  /* unresolved links are already faint; Obsidian's 0.7 opacity would make them fainter */
+  --link-unresolved-opacity: 1;
+
+  /* tags: the blog's topic chip */
+  --tag-radius: 999px;
+  --tag-border-width: 1px;
+  --tag-size: 0.875em;
+  --tag-weight: 400;
+
+  --code-radius: 6px;
+  --code-size: 0.875em;
+
+  /* callouts: flat cards, tinted below */
+  --callout-radius: 12px;
+  --callout-border-width: 0;
+  --callout-title-weight: 600;
+  --callout-blend-mode: normal;
+
+  /* tables: small, horizontal rules only */
+  --table-text-size: 0.875em;
+  --table-header-weight: 500;
+  --table-column-first-border-width: 0;
+  --table-column-last-border-width: 0;
+  /* the blog draws no rule above the header row or under the last row */
+  --table-header-border-width: 0;
+  --table-row-last-border-width: 0;
+
+  --hr-thickness: 1px;
+  --image-radius: 12px;
+
+  --embed-border-start: 1px solid var(--atrament-line);
+  --embed-border-end: 1px solid var(--atrament-line);
+  --embed-border-top: 1px solid var(--atrament-line);
+  --embed-border-bottom: 1px solid var(--atrament-line);
+  /* Obsidian pads only the start side, next to its accent bar */
+  --embed-padding: 0 var(--size-4-6);
+
+  --checkbox-radius: 4px;
+}
+
+/* links: a grey underline 4 px below the text that turns ink on hover */
+a.internal-link,
+a.external-link,
+.cm-hmd-internal-link .cm-underline,
+.cm-link .cm-underline,
+.cm-url .cm-underline {
+  text-decoration-color: var(--atrament-underline);
+  text-underline-offset: 4px;
+}
+
+@media (hover: hover) {
+  a.internal-link:hover,
+  a.external-link:hover,
+  .cm-hmd-internal-link .cm-underline:hover,
+  .cm-link .cm-underline:hover,
+  .cm-url .cm-underline:hover {
+    text-decoration-color: var(--atrament-ink);
+  }
+}
+
+/* inline code; Live Preview needs Obsidian's own selector to win */
+.markdown-rendered code,
+.cm-s-obsidian .cm-inline-code:not(.cm-formatting) {
+  padding: 0.15em 0.4em;
+}
+
+/* code blocks: the blog's expressive-code frame */
+.markdown-rendered pre {
+  border-radius: 12px;
+  line-height: 1.7142857;
+}
+
+/* Obsidian sets its own line height on code[class*="language-"] */
+.markdown-rendered pre > code {
+  line-height: inherit;
+}
+
+/* Live Preview draws a code block's corners with --code-radius on its fence lines */
+.HyperMD-codeblock-begin,
+.HyperMD-codeblock-end {
+  --code-radius: 12px;
+}
+
+.HyperMD-codeblock {
+  line-height: 1.7142857;
+}
+
+/* callouts: the cover colour of the type, neutral for any other type */
+.callout:is([data-callout="note"], [data-callout="info"], [data-callout="todo"]) {
+  --atrament-callout-tint: var(--atrament-cover-steel);
+}
+
+.callout:is([data-callout="tip"], [data-callout="hint"], [data-callout="important"], [data-callout="success"], [data-callout="check"], [data-callout="done"]) {
+  --atrament-callout-tint: var(--atrament-cover-sage);
+}
+
+.callout:is([data-callout="abstract"], [data-callout="summary"], [data-callout="tldr"], [data-callout="question"], [data-callout="help"], [data-callout="faq"], [data-callout="example"], [data-callout="quote"], [data-callout="cite"]) {
+  --atrament-callout-tint: var(--atrament-cover-lilac);
+}
+
+.callout:is([data-callout="warning"], [data-callout="caution"], [data-callout="attention"]) {
+  --atrament-callout-tint: var(--atrament-cover-sand);
+}
+
+.callout:is([data-callout="failure"], [data-callout="fail"], [data-callout="missing"], [data-callout="danger"], [data-callout="error"], [data-callout="bug"]) {
+  --atrament-callout-tint: var(--atrament-cover-blush);
+}
+
+.callout {
+  background-color: var(--atrament-callout-tint, var(--atrament-cover-neutral));
+}
+
+/* a nested callout of another type must not inherit its parent's tint */
+.callout-content {
+  --atrament-callout-tint: initial;
+}
+
+/* tables: no vertical rules (the Live Preview table is .markdown-rendered too) */
+.markdown-rendered :is(th, td) {
+  border-inline-width: 0;
+}
+
+.markdown-rendered hr {
+  margin-block: 3em;
+}
+
+.markdown-embed {
+  border-radius: 12px;
+  padding-block: var(--size-4-3);
+}
+
+/* quotes: flush left like the blog's pull quote */
+.markdown-rendered blockquote {
+  padding-inline-start: 0;
+}
 
 /* interface.css: app chrome: sidebars, tabs, status bar, settings */
 
