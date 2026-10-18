@@ -11,6 +11,12 @@ test("inlineFonts replaces each font: placeholder with a woff2 data URL", () => 
   assert.equal(out, `a{src:url("data:font/woff2;base64,${Buffer.from("x.woff2").toString("base64")}")}b{src:url("data:font/woff2;base64,${Buffer.from("y.woff2").toString("base64")}")}`);
 });
 
+test("inlineFonts accepts whitespace inside the parentheses", () => {
+  const css = 'a{src:url( "font:x.woff2" )}b{src:url(\n  font:y.woff2\n)}';
+  const out = inlineFonts(css, (name) => Buffer.from(name));
+  assert.equal(out, `a{src:url("data:font/woff2;base64,${Buffer.from("x.woff2").toString("base64")}")}b{src:url("data:font/woff2;base64,${Buffer.from("y.woff2").toString("base64")}")}`);
+});
+
 test("inlineFonts names the missing font file", () => {
   assert.throws(
     () => inlineFonts('url("font:gone.woff2")', () => { throw Object.assign(new Error("x"), { code: "ENOENT" }); }),

@@ -10,7 +10,7 @@ export const SOURCE_ORDER = [
   "plugins.css",
 ];
 
-const FONT_PLACEHOLDER = /url\((["']?)font:([^"')]+)\1\)/g;
+const FONT_PLACEHOLDER = /url\(\s*(["']?)font:([^"')\s]+)\1\s*\)/g;
 
 /** Replace every url(font:<file>) placeholder with a base64 woff2 data URL. */
 export function inlineFonts(css, readFont) {
