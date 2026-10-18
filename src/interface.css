@@ -1,1 +1,93 @@
-/* interface.css: app chrome: sidebars, tabs, status bar, settings */
+/* interface.css: app chrome after the blog's header (MBratkowski/blog): flat surfaces, pill
+   buttons, hairline dividers, 12 px menus and modals. Colours come from the palette in
+   tokens.css; this file sets sizes and shapes, plus the few colours tokens.css does not reach:
+   button edges, the toggle thumb and notices. */
+
+body {
+  --radius-s: 6px;
+  --radius-m: 8px;
+  --radius-l: 12px;
+  --nav-item-radius: 8px;
+
+  /* flat tabs: no curved tab shape */
+  --tab-curve: 0;
+  --tab-radius-active: 8px;
+
+  /* the blog's pills are round; macOS would draw them as superellipses */
+  --button-radius: 999px;
+  --button-corner-shape: round;
+  --input-radius: 8px;
+  --modal-radius: 12px;
+  --menu-radius: 12px;
+  --notice-radius: 12px;
+  --divider-width: 1px;
+}
+
+/* Obsidian redefines these for macOS (.mod-macos: a 24 px modal) and for phones and tablets
+   (.is-mobile: touch-sized radii) with a more specific selector than body */
+.mod-macos,
+.is-mobile {
+  --input-radius: 8px;
+  --modal-radius: 12px;
+  --nav-item-radius: 8px;
+}
+
+.theme-light,
+.theme-dark {
+  /* Buttons. Obsidian's buttons take their colours from --interactive-accent and
+     --text-on-accent (the primary ink pill with bg text) and from --interactive-normal and
+     --interactive-hover (bg, surface on hover), all set in tokens.css. Their edge is
+     --input-shadow, which macOS and phones turn off: this draws the 1 px line edge of the
+     outline pills, and of dropdowns, everywhere. */
+  --input-shadow: inset 0 0 0 1px var(--atrament-line);
+  --input-shadow-hover: inset 0 0 0 1px var(--atrament-line);
+
+  /* the phone's floating nav pills: a line edge keeps them apart from the page now that
+     their translucent fill is the page colour. Obsidian's dark --shadow-xs is invalid outside
+     iOS (it uses --shadow-edges, defined only for light mode and iOS), hence the fallback. */
+  --raised-shadow: inset 0 0 0 1px var(--atrament-line), var(--shadow-xs, 0 0 transparent);
+
+  /* a bg thumb: Obsidian's white thumb disappears on the dark mode's light ink track */
+  --toggle-thumb-color: var(--atrament-bg);
+
+  /* notices like menus: bg and a line border instead of a dark bubble. No shadow: Obsidian
+     defines --notice-shadow but never uses it, and the notice container clips overflow. */
+  --notice-background: var(--atrament-bg);
+  --notice-color: var(--atrament-body);
+  --notice-border: 1px solid var(--atrament-line);
+}
+
+/* Obsidian drops the edge of menus, modals and the command palette on phones; with the page
+   and the sheet both in bg, a dark sheet would melt into the page */
+.is-phone {
+  --modal-border-width: var(--border-width);
+  --prompt-border-width: var(--border-width);
+}
+
+.is-mobile .menu {
+  border: var(--menu-border-width) solid var(--menu-border-color);
+}
+
+/* filled buttons need no outline: the primary ink pill and Obsidian's red warning button */
+button:is(.mod-cta, .mod-warning) {
+  --input-shadow: none;
+  --input-shadow-hover: none;
+}
+
+/* canvas controls draw their own 1 px border; the edge above would double it */
+.canvas-control-group {
+  --input-shadow: none;
+  --input-shadow-hover: none;
+}
+
+/* hover previews like menus; Obsidian gives every popover --radius-m and --shadow-s */
+.hover-popover {
+  border-radius: var(--radius-l);
+  box-shadow: var(--atrament-shadow);
+}
+
+@media (hover: hover) {
+  button.mod-cta:hover {
+    opacity: 0.82;
+  }
+}
