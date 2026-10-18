@@ -1,1 +1,57 @@
-/* plugins.css: styling for common community plugins */
+/* plugins.css: Kanban, Dataview and Calendar (Liam Cain) in the Atrament style. Obsidian
+   inserts a plugin's styles.css before the theme, so a selector here only needs the plugin's own
+   specificity to win; Calendar's Svelte styles load after the theme and are overridden through
+   its variables on #calendar-container. Everything else a plugin draws inherits through
+   Obsidian's variables. */
+
+/* Kanban: lanes keep their bg fill and line border from the variables; cards are flat surface
+   cards. The card's content and title wrappers paint bg over the card, hence transparent. */
+.kanban-plugin__lane {
+  border-radius: 12px;
+}
+
+.kanban-plugin__item {
+  border-radius: 12px;
+  background-color: var(--atrament-surface);
+  box-shadow: none;
+}
+
+.kanban-plugin__item-content-wrapper,
+.kanban-plugin__item-title-wrapper {
+  background: transparent;
+}
+
+/* Dataview: tables follow the note's table rules. Dataview draws a bold, larger header over a
+   3 px rule in the text colour and no rules between rows; the selectors repeat Dataview's own,
+   so they match its specificity and win by loading later. */
+.table-view-table > thead > tr > th {
+  font-size: var(--table-header-size);
+  font-weight: var(--table-header-weight);
+  border-bottom: var(--table-border-width) solid var(--table-border-color);
+}
+
+.table-view-table > tbody > tr > td {
+  border-top: var(--table-border-width) solid var(--table-border-color);
+}
+
+.dataview.inline-field-key {
+  color: var(--atrament-muted);
+}
+
+/* a hovered task row on surface, like every other hover, instead of the text selection colour
+   (the yellow mark here) */
+.dataview:is(.task-list-item, .task-list-basic-item):hover {
+  background-color: var(--atrament-surface);
+  box-shadow: -40px 0 0 var(--atrament-surface);
+}
+
+/* Calendar: dots and today's date in ink; the day hover already uses --interactive-hover */
+#calendar-container {
+  --color-dot: var(--atrament-ink);
+  --color-text-today: var(--atrament-ink);
+}
+
+/* ink is barely darker than the body text of the other days, so today is also bold */
+#calendar-container .today {
+  font-weight: var(--bold-weight);
+}
