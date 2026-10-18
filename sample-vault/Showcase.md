@@ -6,17 +6,23 @@ date: 2026-10-18
 description: A draft that exercises every element the Atrament theme styles.
 ---
 
-## Typography
-
 Good typography is mostly invisible. When it works, you read the argument and never notice the type.
 
-### Headings keep a steady rhythm
+# Headings keep a steady rhythm
 
 Each level steps down in size and weight, so a long draft stays easy to scan.
 
+## Second level
+
+Sections need room above them, otherwise they blur together.
+
+### Third level
+
+The third level is where most subsections live.
+
 #### Fourth level
 
-Smaller headings still need room above them, otherwise sections blur together.
+Smaller headings still need room above them.
 
 ##### Fifth level
 
