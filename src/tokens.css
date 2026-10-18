@@ -284,3 +284,15 @@ body {
   --interactive-normal: var(--atrament-bg);
   --interactive-hover: var(--atrament-surface);
 }
+
+/* Translucent window (macOS vibrancy): the sidebars show the desktop through them, so an opaque
+   surface pill would read as a hole; a thin ink wash keeps the hover and active item visible.
+   Obsidian also sets its own divider colour here with this selector; the hairline comes back. */
+.is-translucent:not(.is-fullscreen) {
+  --nav-item-background-hover: color-mix(in srgb, var(--atrament-ink) 8%, transparent);
+  --nav-item-background-active: color-mix(in srgb, var(--atrament-ink) 8%, transparent);
+  --nav-item-background-selected: color-mix(in srgb, var(--atrament-ink) 8%, transparent);
+  --background-modifier-hover: color-mix(in srgb, var(--atrament-ink) 8%, transparent);
+  --background-modifier-active-hover: color-mix(in srgb, var(--atrament-ink) 8%, transparent);
+  --divider-color: var(--atrament-line);
+}
