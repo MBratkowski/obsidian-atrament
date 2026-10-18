@@ -58,6 +58,19 @@ between the repositories.
 | `cover-blush` | #f0dcd3 | #2e2421 | callouts: danger, error |
 | `cover-lilac` | #e4dfed | #27232e | callouts: question, example, quote |
 | `cover-neutral` | #f3f3f3 | #1a1a1a | callouts: unknown or custom types |
+| `hue-red` | #a65a4e | #cf8f84 | `--color-red` and its rgb triplet |
+| `hue-orange` | #a36c45 | #cd9e78 | `--color-orange` |
+| `hue-yellow` | #8f7a3a | #c8b073 | `--color-yellow` |
+| `hue-green` | #66804e | #9db585 | `--color-green` |
+| `hue-cyan` | #4c817d | #84b5b0 | `--color-cyan` |
+| `hue-blue` | #557591 | #8fabc3 | `--color-blue` |
+| `hue-purple` | #7a6a9a | #a99bc8 | `--color-purple` |
+| `hue-pink` | #a05f78 | #cc8fa8 | `--color-pink` |
+
+The `hue-*` colours are muted versions of Obsidian's named colours, used by plugins such as Iconic and by canvas
+and highlights, so saturated defaults do not break the black-and-white look. Contrast against `bg` is at least 4.19:1
+in light and 7.33:1 in dark. Errors keep Obsidian's own red (`--text-error`, `--background-modifier-error*`:
+#e93147 light, #fb464c dark) for safety.
 
 Code syntax colours come from the github-light and github-dark themes, which the blog uses through
 expressive-code.

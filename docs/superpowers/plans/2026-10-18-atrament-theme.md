@@ -457,3 +457,72 @@ Expected: `gh release view 1.0.0` is no longer a draft.
 - [ ] **Step 5: Hand over the submission**
 
 Tell the author the last step is theirs: sign in at community.obsidian.md, link GitHub, add the theme from `MBratkowski/obsidian-atrament`, and send any automated review findings back to fix in a 1.0.1 release.
+
+---
+
+## Addendum (2026-10-18): muted named colours for icons
+
+The author asked for the icon colours in their vault to be muted, in the theme's palette. Their icon plugin, Iconic, takes either a hex value or a colour name, and resolves the names `red`, `orange`, `yellow`, `green`, `cyan`, `blue`, `purple`, `pink` to Obsidian's `--color-<name>` variables and `gray` to `--color-base-70`. Atrament therefore defines muted versions of those eight variables (cover hues, deepened for contrast), and the vault's Iconic rules switch from hex to names so the icons follow the theme in both modes.
+
+### Task 12: Muted extended palette in the theme
+
+**Files:**
+- Modify: `src/tokens.css`, `theme.css` (rebuilt), `docs/superpowers/specs/2026-10-18-atrament-theme-design.md` (Palette section: add the table below and one sentence on why), `README.md` (one Features line)
+
+- [ ] **Step 1: Variables**
+
+On `.theme-light` and `.theme-dark`, as `--atrament-hue-<name>` tokens mapped to `--color-<name>` and `--color-<name>-rgb` (the rgb triplet of the same value):
+
+| Name | Light | Dark |
+|---|---|---|
+| red | #a65a4e | #cf8f84 |
+| orange | #a36c45 | #cd9e78 |
+| yellow | #8f7a3a | #c8b073 |
+| green | #66804e | #9db585 |
+| cyan | #4c817d | #84b5b0 |
+| blue | #557591 | #8fabc3 |
+| purple | #7a6a9a | #a99bc8 |
+| pink | #a05f78 | #cc8fa8 |
+
+Contrast against bg: at least 4.19:1 in light and 7.33:1 in dark. Errors keep Obsidian's own red for safety: pin `--text-error`, `--background-modifier-error`, `--background-modifier-error-hover` to `#e93147` (light) and `#fb464c` (dark), and `--background-modifier-error-rgb` to `233, 49, 71` / `251, 70, 76`.
+
+- [ ] **Step 2: Build, install, probe**
+
+Run: `pnpm build && pnpm vault:install --vault sample-vault && pnpm vault:install --vault "~/Obsidian/Personal Life"`, then in the sample vault in light mode:
+`obsidian vault=sample-vault eval code="(()=>{const s=getComputedStyle(document.body);return ['--color-blue','--color-blue-rgb','--text-error','--background-modifier-error'].map(v=>s.getPropertyValue(v).trim()).join(' | ')})()"`
+Expected: `#557591 | 85, 117, 145 | #e93147 | #e93147`. In dark mode: `#8fabc3 | 143, 171, 195 | #fb464c | #fb464c`. A warning button (`mod-warning`) stays red.
+
+- [ ] **Step 3: Tests, check, commit**
+
+`pnpm test && pnpm check` → `check: ok`; `git commit -m "feat: muted named colours from the cover hues"`.
+
+### Task 13: Iconic rules use the named colours (author's vault, no repo change)
+
+The author asked for this change in their vault ("popraw też kolory ikonek w moim settingu vaulta"). Only Iconic's rule colours change.
+
+- [ ] **Step 1: Back up**
+
+Copy `~/Obsidian/Personal Life/.obsidian/plugins/iconic/data.json` to the scratchpad as `iconic-data.backup.json`.
+
+- [ ] **Step 2: Convert the colours through the running plugin**
+
+In `folderRules` and `fileRules`, replace each `color` by its name; any other colour value stays as it is:
+
+| Hex | Name |
+|---|---|
+| #EF5350 | red |
+| #FFA726, #FF7043, #FFB74D, #FFCC80, #8D6E63 | orange |
+| #FFEE58, #FFF176, #FFF59D, #FFCA28 | yellow |
+| #66BB6A, #4CAF50 | green |
+| #26C6DA, #4DD0E1, #80DEEA, #4DB6AC | cyan |
+| #42A5F5, #64B5F6, #29B6F6 | blue |
+| #AB47BC, #9575CD, #7E57C2 | purple |
+| #EC407A | pink |
+| #78909C, #90A4AE | gray |
+
+Change them on the loaded plugin (`app.plugins.plugins.iconic.settings`), save with the plugin's own save method, and refresh its icons (or disable and re-enable the plugin), so Obsidian does not overwrite a hand-edited `data.json`.
+Expected: `data.json` holds only names in those rules; every rule keeps its id, name, conditions, icon and enabled flag (diff against the backup shows only `color` lines).
+
+- [ ] **Step 3: Look**
+
+File explorer in the author's vault in dark mode (its current mode) and light mode: icons in the muted hues, readable. Leave the vault in dark mode with the original note open.
