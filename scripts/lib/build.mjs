@@ -1,0 +1,35 @@
+import { readFileSync } from "node:fs";
+import { join } from "node:path";
+
+export const SOURCE_ORDER = [
+  "fonts.css",
+  "tokens.css",
+  "typography.css",
+  "editor.css",
+  "interface.css",
+  "plugins.css",
+];
+
+const FONT_PLACEHOLDER = /url\((["']?)font:([^"')]+)\1\)/g;
+
+/** Replace every url(font:<file>) placeholder with a base64 woff2 data URL. */
+export function inlineFonts(css, readFont) {
+  return css.replace(FONT_PLACEHOLDER, (_, _quote, name) => {
+    let bytes;
+    try {
+      bytes = readFont(name);
+    } catch (error) {
+      if (error.code === "ENOENT") throw new Error(`font file not found: fonts/${name}`);
+      throw error;
+    }
+    return `url("data:font/woff2;base64,${bytes.toString("base64")}")`;
+  });
+}
+
+/** Build the full theme.css text from src/ and fonts/ under root. */
+export function buildTheme(root) {
+  const { version } = JSON.parse(readFileSync(join(root, "manifest.json"), "utf8"));
+  const header = `/* Atrament ${version} — https://github.com/MBratkowski/obsidian-atrament. Built from src/; do not edit. Albert Sans: SIL Open Font License 1.1, see fonts/OFL.txt. */\n`;
+  const body = SOURCE_ORDER.map((file) => readFileSync(join(root, "src", file), "utf8")).join("\n");
+  return header + inlineFonts(body, (name) => readFileSync(join(root, "fonts", name)));
+}
