@@ -27,6 +27,24 @@ body {
   --atrament-cover-lilac: #e4dfed;
   --atrament-cover-neutral: #f3f3f3;
 
+  /* muted named colours (hue per cover), with rgb triplets for rgba() users */
+  --atrament-hue-red: #a65a4e;
+  --atrament-hue-red-rgb: 166, 90, 78;
+  --atrament-hue-orange: #a36c45;
+  --atrament-hue-orange-rgb: 163, 108, 69;
+  --atrament-hue-yellow: #8f7a3a;
+  --atrament-hue-yellow-rgb: 143, 122, 58;
+  --atrament-hue-green: #66804e;
+  --atrament-hue-green-rgb: 102, 128, 78;
+  --atrament-hue-cyan: #4c817d;
+  --atrament-hue-cyan-rgb: 76, 129, 125;
+  --atrament-hue-blue: #557591;
+  --atrament-hue-blue-rgb: 85, 117, 145;
+  --atrament-hue-purple: #7a6a9a;
+  --atrament-hue-purple-rgb: 122, 106, 154;
+  --atrament-hue-pink: #a05f78;
+  --atrament-hue-pink-rgb: 160, 95, 120;
+
   /* github-light */
   --atrament-code-comment: #6a737d;
   --atrament-code-keyword: #d73a49;
@@ -37,6 +55,11 @@ body {
   --atrament-code-variable: #e36209;
 
   --color-accent-hsl: 0, 0%, 5%;
+
+  --text-error: #e93147;
+  --background-modifier-error: #e93147;
+  --background-modifier-error-hover: #e93147;
+  --background-modifier-error-rgb: 233, 49, 71;
 }
 
 .theme-dark {
@@ -56,6 +79,24 @@ body {
   --atrament-cover-lilac: #27232e;
   --atrament-cover-neutral: #1a1a1a;
 
+  /* muted named colours (hue per cover), with rgb triplets for rgba() users */
+  --atrament-hue-red: #cf8f84;
+  --atrament-hue-red-rgb: 207, 143, 132;
+  --atrament-hue-orange: #cd9e78;
+  --atrament-hue-orange-rgb: 205, 158, 120;
+  --atrament-hue-yellow: #c8b073;
+  --atrament-hue-yellow-rgb: 200, 176, 115;
+  --atrament-hue-green: #9db585;
+  --atrament-hue-green-rgb: 157, 181, 133;
+  --atrament-hue-cyan: #84b5b0;
+  --atrament-hue-cyan-rgb: 132, 181, 176;
+  --atrament-hue-blue: #8fabc3;
+  --atrament-hue-blue-rgb: 143, 171, 195;
+  --atrament-hue-purple: #a99bc8;
+  --atrament-hue-purple-rgb: 169, 155, 200;
+  --atrament-hue-pink: #cc8fa8;
+  --atrament-hue-pink-rgb: 204, 143, 168;
+
   /* github-dark */
   --atrament-code-comment: #6a737d;
   --atrament-code-keyword: #f97583;
@@ -66,6 +107,11 @@ body {
   --atrament-code-variable: #ffab70;
 
   --color-accent-hsl: 0, 0%, 95%;
+
+  --text-error: #fb464c;
+  --background-modifier-error: #fb464c;
+  --background-modifier-error-hover: #fb464c;
+  --background-modifier-error-rgb: 251, 70, 76;
 }
 
 .theme-light,
@@ -191,6 +237,25 @@ body {
   /* mark */
   --text-selection: var(--atrament-mark);
   --highlight-background: var(--atrament-mark);
+
+  /* named colours used by plugins such as Iconic and by canvas and highlights; the palette's muted
+     hues replace Obsidian's saturated ones. Errors keep Obsidian's own red for safety. */
+  --color-red: var(--atrament-hue-red);
+  --color-red-rgb: var(--atrament-hue-red-rgb);
+  --color-orange: var(--atrament-hue-orange);
+  --color-orange-rgb: var(--atrament-hue-orange-rgb);
+  --color-yellow: var(--atrament-hue-yellow);
+  --color-yellow-rgb: var(--atrament-hue-yellow-rgb);
+  --color-green: var(--atrament-hue-green);
+  --color-green-rgb: var(--atrament-hue-green-rgb);
+  --color-cyan: var(--atrament-hue-cyan);
+  --color-cyan-rgb: var(--atrament-hue-cyan-rgb);
+  --color-blue: var(--atrament-hue-blue);
+  --color-blue-rgb: var(--atrament-hue-blue-rgb);
+  --color-purple: var(--atrament-hue-purple);
+  --color-purple-rgb: var(--atrament-hue-purple-rgb);
+  --color-pink: var(--atrament-hue-pink);
+  --color-pink-rgb: var(--atrament-hue-pink-rgb);
 
   --shadow-l: var(--atrament-shadow);
   --modal-shadow: var(--atrament-shadow);
