@@ -11,11 +11,27 @@ export function checkCss(css, { allowFontPlaceholders }) {
   const important = text.match(/!\s*important/gi) ?? [];
   for (let i = 0; i < important.length; i++) problems.push("!important is not allowed");
   for (const _ of text.matchAll(/@import\b/gi)) problems.push("@import is not allowed");
-  for (const m of text.matchAll(/url\(\s*(["']?)([^)]*?)\1\s*\)/gi)) {
-    const target = m[2].trim();
-    if (/^data:/i.test(target)) continue;
-    if (allowFontPlaceholders && /^font:/i.test(target)) continue;
-    problems.push(`url() must be a data: URL, found url(${target})`);
+  for (const m of text.matchAll(/url\(\s*/gi)) {
+    const start = m.index + m[0].length;
+    const quote = text[start] === '"' || text[start] === "'" ? text[start] : "";
+    let target;
+    let closed = false;
+    if (quote) {
+      const end = text.indexOf(quote, start + 1);
+      if (end !== -1) {
+        target = text.slice(start + 1, end);
+        closed = /^\s*\)/.test(text.slice(end + 1));
+      }
+    } else {
+      const end = text.indexOf(")", start);
+      if (end !== -1) {
+        target = text.slice(start, end).trim();
+        closed = true;
+      }
+    }
+    if (closed && /^data:/i.test(target)) continue;
+    if (closed && allowFontPlaceholders && /^font:/i.test(target)) continue;
+    problems.push(closed ? `url() must be a data: URL, found url(${target})` : "url() is malformed or unclosed");
   }
   return problems;
 }

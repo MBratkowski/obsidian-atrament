@@ -57,3 +57,20 @@ test("runChecks reports a stale or oversized theme.css and missing files", (t) =
   writeFileSync(join(root, "theme.css"), `${built}/*${"x".repeat(512000)}*/\n`);
   assert.ok(runChecks(root).some((p) => p.includes("theme.css is larger than 500 KB")));
 });
+
+test("checkCss reports a non-data url() whose quoted argument contains a parenthesis", () => {
+  assert.equal(checkCss('a{b:url("https://x/a(1).png")}', strict).length, 1);
+});
+
+test("checkCss accepts a data: URL whose quoted argument contains parentheses", () => {
+  assert.deepEqual(checkCss("a{b:url(\"data:image/svg+xml,<svg fill='rgb(0,0,0)'/>\")}", strict), []);
+});
+
+test("checkCss reports an unclosed url(", () => {
+  assert.equal(checkCss("a{b:url(", strict).length, 1);
+  assert.equal(checkCss('a{b:url("data:x', strict).length, 1);
+});
+
+test("checkCss ignores a commented url() next to a real one", () => {
+  assert.equal(checkCss("/* url(http://x) */ a{b:url(http://y)}", strict).length, 1);
+});
