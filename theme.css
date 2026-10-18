@@ -396,6 +396,11 @@ body {
   letter-spacing: -0.02em;
 }
 
+/* a nested quote keeps its parent's size instead of growing again */
+.markdown-rendered blockquote blockquote {
+  font-size: 1em;
+}
+
 /* editor.css: note elements after the blog's post page (MBratkowski/blog): links, tags, code,
    callouts, tables, embeds, footnotes and tasks, in reading view and Live Preview. Colours come
    from the palette in tokens.css; this file sets sizes and shapes. */
