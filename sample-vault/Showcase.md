@@ -74,30 +74,30 @@ console.log(`Reading time: ${Math.ceil(words.length / 200)} min`);
 ## Callouts
 
 > [!note]
-> A plain note with a sentence of explanation.
+> The first draft of this post was twice as long. Most of what I cut was throat-clearing.
 
 > [!tip]
-> A tip that suggests a small improvement.
+> Read the draft on your phone before you publish. A paragraph that looks fine on a laptop can turn into a wall of text.
 
 > [!question]
-> A question the reader may be asking.
+> Does anyone notice the line height? Probably not, and that is the point.
 
 > [!warning]
-> A warning about something easy to miss.
+> A heading every two paragraphs is not structure. It is a table of contents in disguise.
 
 > [!danger]
-> A danger that deserves the strongest colour.
+> Publish the same evening you finish, and the typo in the title goes out to every RSS reader.
 
-> [!custom] A custom callout
-> Unknown types fall back to the default look.
+> [!custom] Before publishing
+> Open every link, read the post aloud once, and cut the last paragraph if it only repeats the first.
 
 ## Table
 
-| Element | Light | Dark |
+| Draft | Words | Reading time |
 | --- | --- | --- |
-| Paper | cream | charcoal |
-| Ink | near black | warm white |
-| Accent | blue | light blue |
+| First pass | 2,400 | 12 min |
+| Second pass | 1,650 | 9 min |
+| Published | 1,200 | 6 min |
 
 ---
 
@@ -105,4 +105,4 @@ console.log(`Reading time: ${Math.ceil(words.length / 200)} min`);
 
 ![[Embedded note]]
 
-[^1]: The footnote text sits at the bottom of the note.
+[^1]: Links age faster than the text around them, so I open every one again on the day the post goes out.
