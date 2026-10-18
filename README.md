@@ -13,7 +13,7 @@ Polish for ink, the text colour of the palette.
   ignores the accent colour set in Obsidian's settings by design.
 - **Muted named colours.** Obsidian's red, orange, yellow, green, cyan, blue, purple and pink are replaced
   by muted hues from the palette, so icon plugins that use colour names, such as Iconic, follow the theme.
-  Errors and warning buttons keep Obsidian's red.
+  Error text and warning buttons keep Obsidian's red.
 - **Albert Sans, embedded.** Albert Sans (by Usted) is built into the theme for text and interface,
   with the Latin Extended glyphs Polish needs, so it works offline. A font you pick in Settings →
   Appearance still takes precedence.
@@ -39,7 +39,7 @@ Atrament under Settings → Appearance → Themes.
 
 ## Development
 
-Node 24 or newer and pnpm; there are no dependencies.
+Node 24 or newer and pnpm; there are no npm dependencies.
 
 ```sh
 pnpm build                          # write theme.css from src/ and fonts/
