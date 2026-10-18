@@ -1,1 +1,221 @@
-/* tokens.css: Minimum palette mapped to Obsidian variables (Task 5) */
+/* tokens.css: the blog's "Minimum" palette mapped to Obsidian variables.
+   Values are copied once from MBratkowski/blog: src/styles/global.css (palette, fonts),
+   tailwind.config.ts (typography plugin) and src/site.config.ts (expressive-code with the
+   github-light and github-dark syntax themes). Nothing keeps them in sync automatically.
+   The accent is ink: the accent colour picked in Obsidian's settings is ignored on purpose. */
+
+body {
+  --font-text-theme: "Albert Sans", system-ui, sans-serif;
+  --font-interface-theme: "Albert Sans", system-ui, sans-serif;
+  --font-monospace-theme: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}
+
+.theme-light {
+  --atrament-bg: #ffffff;
+  --atrament-ink: #0d0d0d;
+  --atrament-body: #1a1a1a;
+  --atrament-muted: #5d5d5d;
+  --atrament-faint: #8a8a8a;
+  --atrament-surface: #f3f3f3;
+  --atrament-line: #e6e6e6;
+  --atrament-underline: #bdbdbd;
+  --atrament-mark: #ffe58a;
+  --atrament-cover-sand: #e9e1d6;
+  --atrament-cover-steel: #dce5ec;
+  --atrament-cover-sage: #e3e8d8;
+  --atrament-cover-blush: #f0dcd3;
+  --atrament-cover-lilac: #e4dfed;
+  --atrament-cover-neutral: #f3f3f3;
+
+  /* github-light */
+  --atrament-code-comment: #6a737d;
+  --atrament-code-keyword: #d73a49;
+  --atrament-code-string: #032f62;
+  --atrament-code-function: #6f42c1;
+  --atrament-code-constant: #005cc5;
+  --atrament-code-tag: #22863a;
+  --atrament-code-variable: #e36209;
+
+  --color-accent-hsl: 0, 0%, 5%;
+}
+
+.theme-dark {
+  --atrament-bg: #0d0d0d;
+  --atrament-ink: #f2f2f2;
+  --atrament-body: #e6e6e6;
+  --atrament-muted: #a3a3a3;
+  --atrament-faint: #737373;
+  --atrament-surface: #1a1a1a;
+  --atrament-line: #2a2a2a;
+  --atrament-underline: #5d5d5d;
+  --atrament-mark: #5c4d14;
+  --atrament-cover-sand: #2b2722;
+  --atrament-cover-steel: #1f262c;
+  --atrament-cover-sage: #252a20;
+  --atrament-cover-blush: #2e2421;
+  --atrament-cover-lilac: #27232e;
+  --atrament-cover-neutral: #1a1a1a;
+
+  /* github-dark */
+  --atrament-code-comment: #6a737d;
+  --atrament-code-keyword: #f97583;
+  --atrament-code-string: #9ecbff;
+  --atrament-code-function: #b392f0;
+  --atrament-code-constant: #79b8ff;
+  --atrament-code-tag: #85e89d;
+  --atrament-code-variable: #ffab70;
+
+  --color-accent-hsl: 0, 0%, 95%;
+}
+
+.theme-light,
+.theme-dark {
+  /* the blog's footnote popover */
+  --atrament-shadow: 0 12px 32px rgb(0 0 0 / 0.14);
+
+  /* bg */
+  --background-primary: var(--atrament-bg);
+  --background-secondary: var(--atrament-bg);
+  --background-secondary-alt: var(--atrament-bg);
+  --background-modifier-form-field: var(--atrament-bg);
+  --interactive-normal: var(--atrament-bg);
+  --ribbon-background: var(--atrament-bg);
+  --ribbon-background-collapsed: var(--atrament-bg);
+  --status-bar-background: var(--atrament-bg);
+  --titlebar-background: var(--atrament-bg);
+  --titlebar-background-focused: var(--atrament-bg);
+  --tab-container-background: var(--atrament-bg);
+  --modal-background: var(--atrament-bg);
+  --menu-background: var(--atrament-bg);
+  --prompt-background: var(--atrament-bg);
+  --text-on-accent: var(--atrament-bg);
+  --checkbox-marker-color: var(--atrament-bg);
+
+  /* surface */
+  --background-primary-alt: var(--atrament-surface);
+  --background-modifier-hover: var(--atrament-surface);
+  --background-modifier-active-hover: var(--atrament-surface);
+  --interactive-hover: var(--atrament-surface);
+  --nav-item-background-hover: var(--atrament-surface);
+  --nav-item-background-active: var(--atrament-surface);
+  --nav-item-background-selected: var(--atrament-surface);
+  --tab-background-active: var(--atrament-surface);
+  --code-background: var(--atrament-surface);
+  --tag-background-hover: var(--atrament-surface);
+
+  /* line */
+  --background-modifier-border: var(--atrament-line);
+  --divider-color: var(--atrament-line);
+  --table-border-color: var(--atrament-line);
+  --table-header-border-color: var(--atrament-line);
+  --hr-color: var(--atrament-line);
+  --tag-border-color: var(--atrament-line);
+  --modal-border-color: var(--atrament-line);
+  --menu-border-color: var(--atrament-line);
+  --prompt-border-color: var(--atrament-line);
+  --input-unfocused-border-color: var(--atrament-line);
+  --graph-line: var(--atrament-line);
+
+  /* underline */
+  --background-modifier-border-hover: var(--atrament-underline);
+  --input-hover-border-color: var(--atrament-underline);
+  --checkbox-border-color: var(--atrament-underline);
+  --tag-border-color-hover: var(--atrament-underline);
+  --link-unresolved-decoration-color: var(--atrament-underline);
+
+  /* body */
+  --text-normal: var(--atrament-body);
+  --graph-text: var(--atrament-body);
+  --metadata-input-text-color: var(--atrament-body);
+  --interactive-accent-hover: var(--atrament-body);
+  --checkbox-color-hover: var(--atrament-body);
+
+  /* muted */
+  --text-muted: var(--atrament-muted);
+  --h5-color: var(--atrament-muted);
+  --h6-color: var(--atrament-muted);
+  --table-header-color: var(--atrament-muted);
+  --metadata-label-text-color: var(--atrament-muted);
+  --tab-text-color: var(--atrament-muted);
+  --graph-node: var(--atrament-muted);
+
+  /* faint */
+  --text-faint: var(--atrament-faint);
+  --link-unresolved-color: var(--atrament-faint);
+  --checklist-done-color: var(--atrament-faint);
+  --graph-node-tag: var(--atrament-faint);
+  --graph-node-attachment: var(--atrament-faint);
+  --graph-node-unresolved: var(--atrament-faint);
+
+  /* ink: the accent */
+  --text-accent: var(--atrament-ink);
+  --text-accent-hover: var(--atrament-ink);
+  --color-accent: var(--atrament-ink);
+  --color-accent-1: var(--atrament-ink);
+  --color-accent-2: var(--atrament-ink);
+  --interactive-accent: var(--atrament-ink);
+  --h1-color: var(--atrament-ink);
+  --h2-color: var(--atrament-ink);
+  --h3-color: var(--atrament-ink);
+  --h4-color: var(--atrament-ink);
+  --bold-color: var(--atrament-ink);
+  --blockquote-color: var(--atrament-ink);
+  --link-color: var(--atrament-ink);
+  --link-color-hover: var(--atrament-ink);
+  --link-external-color: var(--atrament-ink);
+  --link-external-color-hover: var(--atrament-ink);
+  --tag-color: var(--atrament-ink);
+  --tag-color-hover: var(--atrament-ink);
+  --nav-item-color-active: var(--atrament-ink);
+  --tab-text-color-focused-active: var(--atrament-ink);
+  --tab-text-color-focused-active-current: var(--atrament-ink);
+  --checkbox-color: var(--atrament-ink);
+  --background-modifier-border-focus: var(--atrament-ink);
+  --input-focus-border-color: var(--atrament-ink);
+  --graph-node-focused: var(--atrament-ink);
+  --callout-default: var(--atrament-ink);
+  --callout-info: var(--atrament-ink);
+  --callout-todo: var(--atrament-ink);
+  --callout-important: var(--atrament-ink);
+  --callout-tip: var(--atrament-ink);
+  --callout-success: var(--atrament-ink);
+  --callout-question: var(--atrament-ink);
+  --callout-warning: var(--atrament-ink);
+  --callout-fail: var(--atrament-ink);
+  --callout-error: var(--atrament-ink);
+  --callout-bug: var(--atrament-ink);
+  --callout-example: var(--atrament-ink);
+  --callout-quote: var(--atrament-ink);
+  --callout-summary: var(--atrament-ink);
+
+  /* mark */
+  --text-selection: var(--atrament-mark);
+  --highlight-background: var(--atrament-mark);
+
+  --shadow-l: var(--atrament-shadow);
+  --modal-shadow: var(--atrament-shadow);
+  --menu-shadow: var(--atrament-shadow);
+
+  --tag-background: transparent;
+  --blockquote-background-color: transparent;
+
+  /* syntax */
+  --code-comment: var(--atrament-code-comment);
+  --code-keyword: var(--atrament-code-keyword);
+  --code-operator: var(--atrament-code-keyword);
+  --code-string: var(--atrament-code-string);
+  --code-function: var(--atrament-code-function);
+  --code-value: var(--atrament-code-constant);
+  --code-property: var(--atrament-code-constant);
+  --code-tag: var(--atrament-code-tag);
+  --code-important: var(--atrament-code-variable);
+  --code-normal: var(--atrament-body);
+  --code-punctuation: var(--atrament-body);
+}
+
+/* Obsidian redefines these on phones and tablets in dark mode with a more specific selector */
+.is-mobile.theme-dark {
+  --tag-background: transparent;
+  --interactive-normal: var(--atrament-bg);
+  --interactive-hover: var(--atrament-surface);
+}
