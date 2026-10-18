@@ -29,7 +29,11 @@ export function inlineFonts(css, readFont) {
 /** Build the full theme.css text from src/ and fonts/ under root. */
 export function buildTheme(root) {
   const { version } = JSON.parse(readFileSync(join(root, "manifest.json"), "utf8"));
-  const header = `/* Atrament ${version} — https://github.com/MBratkowski/obsidian-atrament. Built from src/; do not edit. Albert Sans: SIL Open Font License 1.1, see fonts/OFL.txt. */\n`;
+  // The font licence notice travels with theme.css, the only file users receive (OFL section 2).
+  const header =
+    `/* Atrament ${version} — https://github.com/MBratkowski/obsidian-atrament. Built from src/; do not edit. ` +
+    "Albert Sans, Copyright 2021 The Albert Sans Project Authors (https://github.com/usted/Albert-Sans), " +
+    "licensed under the SIL Open Font License 1.1 (https://openfontlicense.org). */\n";
   const body = SOURCE_ORDER.map((file) => readFileSync(join(root, "src", file), "utf8")).join("\n");
   return header + inlineFonts(body, (name) => readFileSync(join(root, "fonts", name)));
 }

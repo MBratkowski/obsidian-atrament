@@ -30,6 +30,9 @@ test("buildTheme concatenates src in SOURCE_ORDER under a versioned header", () 
   }
   const css = buildTheme(root);
   assert.match(css, /^\/\* Atrament 9\.9\.9/);
+  const header = css.slice(0, css.indexOf("*/"));
+  assert.ok(header.includes("Albert Sans, Copyright 2021 The Albert Sans Project Authors (https://github.com/usted/Albert-Sans)"));
+  assert.ok(header.includes("licensed under the SIL Open Font License 1.1 (https://openfontlicense.org)"));
   const positions = SOURCE_ORDER.map((f) => css.indexOf(`/* ${f} */`));
   assert.ok(positions.every((p) => p >= 0));
   assert.deepEqual(positions, [...positions].sort((a, b) => a - b));
