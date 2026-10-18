@@ -615,6 +615,17 @@ button:is(.mod-cta, .mod-warning) {
   button.mod-cta:hover {
     opacity: 0.82;
   }
+
+  /* Obsidian paints a hovered search or backlink match with --text-selection, the mark yellow,
+     and the matched term inside it is mark too: it would disappear. Hover on surface instead. */
+  .search-result-file-match:hover {
+    background-color: var(--atrament-surface);
+  }
+}
+
+/* the same for a tapped match on phones and tablets */
+.search-result-file-match.mobile-tap {
+  background-color: var(--atrament-surface);
 }
 
 /* plugins.css: Kanban, Dataview and Calendar (Liam Cain) in the Atrament style. Obsidian
