@@ -38,38 +38,9 @@ Writing a draft is mostly **deciding what to cut**, and *rereading it aloud* hel
 
 Polish glyphs: Zażółć gęślą jaźń. ZAŻÓŁĆ GĘŚLĄ JAŹŃ.
 
-> A theme is a promise about reading. It should get out of the way and let the words carry the page.
-
-## Lists
-
-- A bulleted item with a short phrase
-- Another item that is long enough to wrap onto a second line when the pane is narrow, which checks hanging indents
-  - A nested item
-
-1. First numbered step
-2. Second numbered step
-3. Third numbered step
-
-- [x] A finished task
-- [ ] A task still waiting
-
 Tags in the text: #draft and #blog/typography.
 
-## Code
-
-Use `inline code` for short names such as `--font-text`.
-
-```js
-const words = text.split(/\s+/).filter(Boolean);
-console.log(`Reading time: ${Math.ceil(words.length / 200)} min`);
-```
-
-```css
-.markdown-rendered p {
-  max-width: 38rem;
-  line-height: 1.6;
-}
-```
+> A theme is a promise about reading. It should get out of the way and let the words carry the page.
 
 ## Callouts
 
@@ -90,6 +61,35 @@ console.log(`Reading time: ${Math.ceil(words.length / 200)} min`);
 
 > [!custom] Before publishing
 > Open every link, read the post aloud once, and cut the last paragraph if it only repeats the first.
+
+## Lists
+
+- A bulleted item with a short phrase
+- Another item that is long enough to wrap onto a second line when the pane is narrow, which checks hanging indents
+  - A nested item
+
+1. First numbered step
+2. Second numbered step
+3. Third numbered step
+
+- [x] A finished task
+- [ ] A task still waiting
+
+## Code
+
+Use `inline code` for short names such as `--font-text`.
+
+```js
+const words = text.split(/\s+/).filter(Boolean);
+console.log(`Reading time: ${Math.ceil(words.length / 200)} min`);
+```
+
+```css
+.markdown-rendered p {
+  max-width: 38rem;
+  line-height: 1.6;
+}
+```
 
 ## Table
 
